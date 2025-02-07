@@ -1,5 +1,5 @@
 const messages = [
-    "Are you sure?",
+    "Anupama band",
     "Really sure??",
     "Are you positive?",
     "Pookie please...",
@@ -23,10 +23,19 @@ let messageIndex = 0;
 function handleNoClick() {
     const noButton = document.querySelector('.no-button');
     const yesButton = document.querySelector('.yes-button');
-    noButton.textContent = messages[messageIndex];
-    messageIndex = (messageIndex + 1) % messages.length;
-    const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
-    yesButton.style.fontSize = `${currentSize * 1.5}px`;
+
+    if (messageIndex < messages.length) {
+        noButton.textContent = messages[messageIndex];
+        messageIndex++;
+        
+        if (messageIndex === messages.length) {
+            handleYesClick(); // Redirect after the final message
+            return;
+        }
+        
+        const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+        yesButton.style.fontSize = `${currentSize * 1.5}px`;
+    }
 }
 
 function handleYesClick() {
